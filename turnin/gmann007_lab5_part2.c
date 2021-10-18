@@ -14,7 +14,7 @@
 #endif
 
 enum States { Start, Init, Wait, Dec, Inc, Reset } state;
-unsigned char count = 0x00;
+
 
 void Tick() {
 	switch (state) {
@@ -71,31 +71,28 @@ void Tick() {
 	switch (state) {
 	case Start: {
 		PORTC = 0x00;
-		count = 0x00;
-		
 	}
-			break;
-			  
+			  break;
 	case Wait:
 	case Init:
 		break;
 
 	case Inc: {
 		if (PORTC >= 0x09) {
-			count = 0x09; PORTC = count; break;
+			PORTC = 0x09; break;
 		}
 		else {
-			++count; PORTC = count; break;
+			PORTC = PORTC + 0x01; break;
 		}
 	}
 			break;
 
 	case Dec: {
 		if (PORTC <= 0x00) {
-			count = 0x00;PORTC = 0x00; break;
+			PORTC = 0x00; break;
 		}
 		else {
-			--count; PORTC = count; break;
+			PORTC = PORTC - 0x01; break;
 		}
 	}
 			break;
@@ -103,7 +100,7 @@ void Tick() {
 
 
 	case Reset: {
-		PORTC = 0x00; count = 0x00; break;
+		PORTC = 0x00; break;
 	}
 	}
 }
