@@ -22,11 +22,9 @@ int main(void) {
 	unsigned char tmpB = 0x00;
 	/* Insert your solution below */
 	while (1) {
-		tmpA = ~PINA;
-		if (tmpA == 0x00) {
-			tmpB = 0x40;
-	        }
-		else if ((tmpA == 0x01 || tmpA == 0x02)) {
+		tmpA = ~PINA & 0x0F;
+		
+		 if ((tmpA == 0x01 || tmpA == 0x02)) {
 			tmpB = 0x60;
 		}
 		else if (tmpA == 0x03 || tmpA == 0x04) {
@@ -43,6 +41,9 @@ int main(void) {
 		}
 		else if (tmpA == 0x0D || tmpA == 0x0E || tmpA == 0x0F) {
 			tmpB = 0x3F;
+		}
+		else {
+			tmpB = 0x40;
 		}
 		
 	
