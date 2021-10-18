@@ -22,7 +22,7 @@ int main(void) {
 	unsigned char tmpB = 0x00;
 	/* Insert your solution below */
 	while (1) {
-		tmpA = ~PINA & 0x0F;
+		tmpA = ~PINA;
 		
 		if ((tmpA & 0x00 ) == 0x00) {
 			tmpB = 0x40;
