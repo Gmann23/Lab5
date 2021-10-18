@@ -24,32 +24,32 @@ int main(void) {
 	while (1) {
 		tmpA = ~PINA & 0x0F;
 		
-		 if ((tmpA == 0x01 || tmpA == 0x02)) {
+		if ((tmpA & 0x00 ) == 0x00) {
+			tmpB = 0x40;
+		}
+		
+		else if (((tmpA & 0x01) == 0x01) || ((tmpA & 0x02)== 0x02)) {
 			tmpB = 0x60;
 		}
-		else if (tmpA == 0x03 || tmpA == 0x04) {
+		else if (((tmpA & 0x03) == 0x03) || ((tmpA & 0x04) == 0x04)) {
 			tmpB = 0x70;
 		}
-		else if (tmpA == 0x05 || tmpA == 0x06) {
+		else if (((tmpA & 0x05) == 0x05) || ((tmpA & 0x06) == 0x06)) {
 			tmpB = 0x38;
 		}
-		else if (tmpA == 0x07 || tmpA == 0x08 || tmpA == 0x09) {
+		else if (((tmpA & 0x07) == 0x07) || ((tmpA & 0x08) == 0x08) || ((tmpA & 0x09) == 0x09)) {
 			tmpB = 0x3C;
 		}
-		else if (tmpA == 0x0A || tmpA == 0x0B || tmpA == 0x0C) {
+		else if (((tmpA & 0x0A) == 0x0A) || ((tmpA & 0x0B) == 0x0B) || ((tmpA & 0x0C) == 0x0C)) {
 			tmpB = 0x3E;
 		}
-		else if (tmpA == 0x0D || tmpA == 0x0E || tmpA == 0x0F) {
+		else if (((tmpA & 0x0D) == 0x0D) || ((tmpA & 0x0E) == 0x0E) || ((tmpA & 0x0F) == 0x0F)) {
 			tmpB = 0x3F;
-		}
-		else {
-			tmpB = 0x40;
 		}
 		
 	
 		PORTC = tmpB;
-                tmpA = 0x00;
-		tmpB = 0x00;
+            
 
 	}
 
