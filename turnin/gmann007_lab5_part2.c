@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {Start,Begin, Wait,Dec, Inc, , Reset, On, Off, } state;
+enum States {Start,Begin, Wait,Dec, Inc, Reset, On, Off, } state;
 void Tick() {
 	switch(state) {
 		case Start:
@@ -22,19 +22,19 @@ void Tick() {
 			state = Wait;
 			break;
 		case Wait:
-			if ((PINA & 0x03) == 0x03) {
+			if ((PINA == 0x03) {
                                 state = Reset;
                         }
-			else if ((PINA & 0x01) == 0x01) {
+			else if ((PINA == 0x01) {
 				state = On;
 			}
-			else if ((PINA & 0x02) == 0x02) {
+			else if ((PINA == 0x02) {
                                 state = Off;
                         }
 			break;
 
                   case Dec:
-                        if ((PINA & 0x02) == 0x02) {
+                        if ((PINA & 0x03) == 0x02) {
                                 state = Dec;
                         }
                         else {
@@ -43,7 +43,7 @@ void Tick() {
                         break;
 
                 case Inc:
-                        if ((PINA & 0x01) == 0x01) {
+                        if ((PINA & 0x03) == 0x01) {
                                 state = Inc;
                         }
                         else {
@@ -55,7 +55,7 @@ void Tick() {
 
 
 		case Reset:
-			if ((PINA & 0x03) == 0x03) {
+			if ((PINA == 0x03) {
 				state = Reset;
 			}
 			else {
@@ -63,7 +63,7 @@ void Tick() {
 			}
 			break;
 		case On:
-			state = On;
+			state = Inc;
 			break;
 
 		case Off:
