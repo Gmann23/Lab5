@@ -27,10 +27,10 @@ void Tick() {
 		if ((~PINA & 0x03) == 0x01) {
 			state = Inc; break;
 		}
-		else if ((PINA & 0x03) == 0x02) {
+		else if ((~PINA & 0x03) == 0x02) {
 			state = Dec; break;
 		}
-		else if ((PINA & 0x03) == 0x03) {
+		else if ((~PINA & 0x03) == 0x03) {
 			state = Reset; break;
 		}
 		else {
@@ -41,7 +41,7 @@ void Tick() {
 		if (((~PINA & 0x03) == 0x01) || ((~PINA & 0x03) == 0x02)) {
 			state = Wait; break;
 		}
-		else if ((PINA & 0x03) == 0x03) {
+		else if ((~PINA & 0x03) == 0x03) {
 			state = Reset; break;
 		}
 		else {
@@ -58,10 +58,10 @@ void Tick() {
 
 
 	case Reset:
-		if (((PINA & 0x03) == 0x01) && ((PINA & 0x03) == 0x02)) {
+		if (((~PINA & 0x03) == 0x01) && ((PINA & 0x03) == 0x02)) {
 			state = Reset; break;
 		}
-		else if ((PINA & 0x03) == 0x00) {
+		else if ((~PINA & 0x03) == 0x00) {
 			state = Init; break;
 		}
 
@@ -82,7 +82,7 @@ void Tick() {
 			PORTC = 0x09; break;
 		}
 		else {
-			PORTC = PORTC + 0x01; break;
+			PORTC = PORTC + 0x01 ; break;
 		}
 	}
 			break;
@@ -113,5 +113,5 @@ int main(void) {
 	while (1) {
 		Tick();
 	}
-	
+	return 1;
 }
