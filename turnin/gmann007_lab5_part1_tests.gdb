@@ -31,7 +31,7 @@ echo Running all tests..."\n\n
 test “tempA - 0”
 setPINA 0x00
 continue 2
-expectPORTC 0x00
+expectPORTC 0x40
 checkResult
 
 test “tempA - 1”
